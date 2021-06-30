@@ -21,31 +21,87 @@
     // Press C to delete all inputs at any time
 
 
+//let resultDisplay = document.getElementById("result").textContent;
 
-let numberA = 0;
-let numberB = 0;
-let numberC = 0;
-let operatorA = null;
-let operatorB = null;
+let firstOperand = '';
+let secondOperand = '';
+let operator = '';
 
-let calculatorButton = document.querySelectorAll(".button")
-for (i = 0; i < calculatorButton.length; i++) {
-    calculatorButton[i].addEventListener('click', getNumberAndOperatorFromCalculator);
-}
+document.querySelectorAll('.number-button')
+.forEach(numberButton => {
+    numberButton.addEventListener("click", () => {
+        const number = numberButton.textContent;
+        
+        if(!operator) {
+            firstOperand += number;
+            document.getElementById("result").textContent += number;
+        }
 
-function getNumberAndOperatorFromCalculator (){
-    let calculatorInput = this.textContent;
-    let number
-    let operator
+        if(firstOperand && operator){
+            secondOperand += number;
+            document.getElementById("result").textContent += number;
+        }
+        console.log('firstOperand', firstOperand);
+        console.log('secondOperand', secondOperand);
+    })
+})
 
-    if(isNaN(calculatorInput) === false || calculatorInput === "."){
-    number = document.getElementById("result").textContent += calculatorInput;
+
+document.querySelectorAll('.operator-button')
+.forEach(operatorButton => {
+    operatorButton.addEventListener('click', (e) => {
+    const selectedOperator = e.target.textContent;
     
-        } else {
-    document.getElementById("result").textContent = null;
-    operator = calculatorInput;
+    if(firstOperand) {
+        operator = selectedOperator;
+        document.getElementById("result").textContent = null;
     }
-}
+    console.log(operator);
+    })
+})
+
+document.querySelector('#equals-button')
+.addEventListener('click', () => {
+    console.log('equals');
+})
+
+document.querySelector('#clear-button')
+.addEventListener('click', () => {
+    firstOperand = '';
+    secondOperand = '';
+    operator = '';
+    document.getElementById("result").textContent = null;
+    console.log('clear');
+})
+
+
+
+
+
+// let numberA = 0;
+// let numberB = 0;
+// let numberC = 0;
+// let operatorA = null;
+// let operatorB = null;
+
+// let calculatorButton = document.querySelectorAll(".button")
+// for (i = 0; i < calculatorButton.length; i++) {
+//     calculatorButton[i].addEventListener('click', getNumberAndOperatorFromCalculator);
+// }
+
+// function getNumberAndOperatorFromCalculator (){
+//     let calculatorInput = this.textContent;
+//     let number
+//     let operator
+
+//     if(isNaN(calculatorInput) === false || calculatorInput === "."){
+//     number = document.getElementById("result").textContent += calculatorInput;
+    
+//         } else {
+//     document.getElementById("result").textContent = null;
+//     operator = calculatorInput;
+//     }
+// }
 
 
 
