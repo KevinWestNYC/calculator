@@ -21,11 +21,12 @@
     // Press C to delete all inputs at any time
 
 
-//let resultDisplay = document.getElementById("result").textContent;
-
-let firstOperand = '';
-let secondOperand = '';
+// let resultDisplay = document.getElementById("result").textContent;
+let firstOperand = 0;
+let secondOperand = 0;
 let operator = '';
+let result = 0;
+
 
 document.querySelectorAll('.number-button')
 .forEach(numberButton => {
@@ -41,8 +42,10 @@ document.querySelectorAll('.number-button')
             secondOperand += number;
             document.getElementById("result").textContent += number;
         }
+       
         console.log('firstOperand', firstOperand);
         console.log('secondOperand', secondOperand);
+        console.log('*******')
     })
 })
 
@@ -56,24 +59,73 @@ document.querySelectorAll('.operator-button')
         operator = selectedOperator;
         document.getElementById("result").textContent = null;
     }
-    console.log(operator);
+    if(secondOperand){
+        
+        calculate(firstOperand, secondOperand, operator);
+        operator = '';
+        document.getElementById("result").textContent = null;
+        secondOperand = 0;
+        firstOperand = result;
+    }
+    console.log('operator:', operator);
+    console.log('firstOperand',firstOperand);
+    console.log('secondOperand',secondOperand);
+    console.log('result', result)
+    console.log('*******')
     })
 })
 
 document.querySelector('#equals-button')
-.addEventListener('click', () => {
-    console.log('equals');
+.addEventListener('click', () =>{
+    calculate(firstOperand, secondOperand, operator);
+    operator = '';
+    secondOperand = 0;
+    firstOperand = result;
 })
+
+document.querySelector('#decimal-button')
+.addEventListener('click', () => {
+    decimal = '.';
+})
+
 
 document.querySelector('#clear-button')
 .addEventListener('click', () => {
-    firstOperand = '';
-    secondOperand = '';
+    firstOperand = 0;
+    secondOperand = 0;
     operator = '';
     document.getElementById("result").textContent = null;
     console.log('clear');
 })
 
+function calculate(firstOperand, secondOperand, operator){
+    
+    switch(operator){
+        case '+':
+            result = parseFloat(firstOperand) + parseFloat(secondOperand);
+            break;
+        case '-':
+            result = parseFloat(firstOperand) - parseFloat(secondOperand);
+            break;
+        case '*':
+            result = parseFloat(firstOperand) * parseFloat(secondOperand);
+            break;
+        case '/':
+            result = parseFloat(firstOperand) / parseFloat(secondOperand);
+            break;
+    }
+    
+    document.getElementById("result").textContent = result;
+    
+    
+    console.log('*******')
+    console.log('firstOperand',firstOperand);
+    console.log('secondOperand',secondOperand);
+    console.log('operator', operator);
+    console.log('result', result)
+    console.log('*******')
+
+};
 
 
 
