@@ -22,10 +22,10 @@
 
 
 // let resultDisplay = document.getElementById("result").textContent;
-let firstOperand = 0;
-let secondOperand = 0;
+let firstOperand = '';
+let secondOperand = '';
 let operator = '';
-let result = 0;
+let result = '';
 
 
 document.querySelectorAll('.number-button')
@@ -64,7 +64,7 @@ document.querySelectorAll('.operator-button')
         calculate(firstOperand, secondOperand, operator);
         operator = '';
         document.getElementById("result").textContent = null;
-        secondOperand = 0;
+        secondOperand = '';
         firstOperand = result;
     }
     console.log('operator:', operator);
@@ -79,20 +79,26 @@ document.querySelector('#equals-button')
 .addEventListener('click', () =>{
     calculate(firstOperand, secondOperand, operator);
     operator = '';
-    secondOperand = 0;
+    secondOperand = '';
     firstOperand = result;
 })
 
 document.querySelector('#decimal-button')
-.addEventListener('click', () => {
-    decimal = '.';
+.addEventListener('click', function(){
+    if (document.getElementById("result").textContent.indexOf('.') == -1 && !operator){
+        document.getElementById("result").textContent += '.';
+        firstOperand += '.'
+      } else if (document.getElementById("result").textContent.indexOf('.') == -1 && firstOperand && operator){
+        document.getElementById("result").textContent += '.';
+        secondOperand += '.'
+    }
 })
 
 
 document.querySelector('#clear-button')
 .addEventListener('click', () => {
-    firstOperand = 0;
-    secondOperand = 0;
+    firstOperand = '';
+    secondOperand = '';
     operator = '';
     document.getElementById("result").textContent = null;
     console.log('clear');
@@ -130,7 +136,7 @@ function calculate(firstOperand, secondOperand, operator){
 
 
 
-// let numberA = 0;
+// let numberA = '';
 // let numberB = 0;
 // let numberC = 0;
 // let operatorA = null;
@@ -188,4 +194,3 @@ function calculate(firstOperand, secondOperand, operator){
     //     operatorA = operator;
     // } else if(operatorA !== null && operatorB === null){
     //     operatorB = operator;
-    // 
