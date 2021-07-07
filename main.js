@@ -25,6 +25,7 @@
 let firstOperand = 0;
 let secondOperand = 0;
 let operator = '';
+
 let result = 0;
 
 
@@ -67,9 +68,11 @@ document.querySelectorAll('.operator-button')
         secondOperand = 0;
         firstOperand = result;
     }
+ 
+    console.log('operator:', operator);
     console.log('operator:', operator);
     console.log('firstOperand',firstOperand);
-    console.log('secondOperand',secondOperand);
+    
     console.log('result', result)
     console.log('*******')
     })
@@ -126,66 +129,3 @@ function calculate(firstOperand, secondOperand, operator){
     console.log('*******')
 
 };
-
-
-
-
-// let numberA = 0;
-// let numberB = 0;
-// let numberC = 0;
-// let operatorA = null;
-// let operatorB = null;
-
-// let calculatorButton = document.querySelectorAll(".button")
-// for (i = 0; i < calculatorButton.length; i++) {
-//     calculatorButton[i].addEventListener('click', getNumberAndOperatorFromCalculator);
-// }
-
-// function getNumberAndOperatorFromCalculator (){
-//     let calculatorInput = this.textContent;
-//     let number
-//     let operator
-
-//     if(isNaN(calculatorInput) === false || calculatorInput === "."){
-//     number = document.getElementById("result").textContent += calculatorInput;
-    
-//         } else {
-//     document.getElementById("result").textContent = null;
-//     operator = calculatorInput;
-//     }
-// }
-
-
-
-
-
-    // const one = document.getElementById("1-button");
-// const two = document.getElementById("2-button");
-// const three = document.getElementById("3-button");
-// const four = document.getElementById("4-button");
-// const five = document.getElementById("5-button");
-// const six = document.getElementById("6-button");
-// const seven = document.getElementById("7-button");
-// const eight = document.getElementById("8-button");
-// const nine = document.getElementById("9-button");
-// const zero = document.getElementById("0-button");
-// const decimal = document.getElementById("decimal-button");
-// const divide = document.getElementById("divide-button");
-// const multiply = document.getElementById("multiply-button");
-// const minus = document.getElementById("minus-button");
-// const add = document.getElementById("add-button");
-// const equals = document.getElementById("equals-button");
-// const clear = document.getElementById("clear-button");
-
-    
-
-    // if(numberA === 0){
-    //     numberA = number;
-    // } else if(numberA !==0 && numberB===0){
-    //     numberB = number;
-    // }
-    // if(operatorA === null){
-    //     operatorA = operator;
-    // } else if(operatorA !== null && operatorB === null){
-    //     operatorB = operator;
-    // 
