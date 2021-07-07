@@ -22,8 +22,8 @@
 
 
 // let resultDisplay = document.getElementById("result").textContent;
-let firstOperand = 0;
-let secondOperand = 0;
+let firstOperand = '';
+let secondOperand = '';
 let operator = '';
 
 let result = 0;
@@ -65,7 +65,7 @@ document.querySelectorAll('.operator-button')
         calculate(firstOperand, secondOperand, operator);
         operator = '';
         document.getElementById("result").textContent = null;
-        secondOperand = 0;
+        secondOperand = '';
         firstOperand = result;
     }
  
@@ -82,20 +82,26 @@ document.querySelector('#equals-button')
 .addEventListener('click', () =>{
     calculate(firstOperand, secondOperand, operator);
     operator = '';
-    secondOperand = 0;
+    secondOperand = '';
     firstOperand = result;
 })
 
 document.querySelector('#decimal-button')
-.addEventListener('click', () => {
-    decimal = '.';
+.addEventListener('click', function(){
+    if (document.getElementById("result").textContent.indexOf('.') == -1 && !operator){
+        document.getElementById("result").textContent += '.';
+        firstOperand += '.'
+      } else if (document.getElementById("result").textContent.indexOf('.') == -1 && firstOperand && operator){
+        document.getElementById("result").textContent += '.';
+        secondOperand += '.'
+    }
 })
 
 
 document.querySelector('#clear-button')
 .addEventListener('click', () => {
-    firstOperand = 0;
-    secondOperand = 0;
+    firstOperand = '';
+    secondOperand = '';
     operator = '';
     document.getElementById("result").textContent = null;
     console.log('clear');
