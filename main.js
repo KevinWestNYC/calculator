@@ -36,12 +36,12 @@ document.querySelectorAll('.number-button')
         
         if(!operator) {
             firstOperand += number;
-            document.getElementById("result").textContent += number;
+            document.getElementById("result").textContent = firstOperand;
         }
 
         if(firstOperand && operator){
             secondOperand += number;
-            document.getElementById("result").textContent += number;
+            document.getElementById("result").textContent = secondOperand;
         }
        
         console.log('firstOperand', firstOperand);
@@ -55,19 +55,20 @@ document.querySelectorAll('.operator-button')
 .forEach(operatorButton => {
     operatorButton.addEventListener('click', (e) => {
     const selectedOperator = e.target.textContent;
-    
+    if(secondOperand){
+        
+        calculate(firstOperand, secondOperand, operator);
+        operator = selectedOperator;
+        firstOperand = result;
+        secondOperand = '';
+        document.getElementById("result").textContent = result;
+        return
+    }
     if(firstOperand) {
         operator = selectedOperator;
         document.getElementById("result").textContent = null;
     }
-    if(secondOperand){
-        
-        calculate(firstOperand, secondOperand, operator);
-        operator = '';
-        document.getElementById("result").textContent = null;
-        secondOperand = '';
-        firstOperand = result;
-    }
+    
  
     console.log('operator:', operator);
     console.log('operator:', operator);
